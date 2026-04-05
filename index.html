@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="TubeRocket - AI Video Uploader">
     <meta name="twitter:description" content="Upload YouTube videos with AI-generated titles, tags & thumbnails in seconds.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
@@ -385,6 +385,417 @@
         footer a:hover { color: var(--yt-red); }
         .footer-brand { font-weight: 500; color: var(--yt-dark); margin-bottom: 12px; }
 
+        /* PHONE DEMO */
+        .demo-section {
+            padding: 60px 24px 80px;
+            background: linear-gradient(180deg, #FAFAFA 0%, #FFF 50%, #FAFAFA 100%);
+            text-align: center;
+        }
+        .demo-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; margin-bottom: 8px; }
+        .demo-section .section-sub { margin-bottom: 40px; }
+        .phone-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 800px;
+        }
+        .phone {
+            width: 280px;
+            height: 560px;
+            background: #fff;
+            border-radius: 36px;
+            border: 4px solid #1a1a1a;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05);
+            overflow: hidden;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 24px;
+            background: #1a1a1a;
+            border-radius: 0 0 16px 16px;
+            z-index: 10;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Each screen slide */
+        .app-screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateX(40px);
+            transition: none;
+            pointer-events: none;
+            background: #fff;
+        }
+        .app-screen.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+            animation: screenIn 0.5s ease-out;
+        }
+        .app-screen.exiting {
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: screenOut 0.4s ease-in forwards;
+        }
+        @keyframes screenIn {
+            from { opacity:0; transform:translateX(40px); }
+            to { opacity:1; transform:translateX(0); }
+        }
+        @keyframes screenOut {
+            from { opacity:1; transform:translateX(0); }
+            to { opacity:0; transform:translateX(-40px); }
+        }
+
+        /* Screen 1: Login */
+        .scr-login {
+            align-items: center;
+            justify-content: center;
+            padding: 30px 24px;
+            background: #fff;
+        }
+        .scr-login .app-logo {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 16px rgba(255,71,87,0.3);
+        }
+        .scr-login .app-logo .material-icons { color: #fff; font-size: 32px; }
+        .scr-login .app-title { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 4px; }
+        .scr-login .app-tagline { font-size: 11px; color: #bbb; margin-bottom: 28px; }
+        .scr-login .g-btn {
+            width: 100%;
+            padding: 12px;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+        .scr-login .g-btn img { width: 18px; height: 18px; }
+        .scr-login .divider-row { display: flex; align-items: center; gap: 10px; margin: 14px 0; width: 100%; }
+        .scr-login .divider-row span { font-size: 11px; color: #ccc; }
+        .scr-login .divider-row hr { flex: 1; border: none; border-top: 1px solid #e0e0e0; }
+        .scr-login .yt-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Screen 2: Home */
+        .scr-home { background: #fff; }
+        .scr-home .home-header {
+            padding: 32px 16px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .scr-home .home-header .brand { font-size: 16px; font-weight: 800; color: #FF4757; }
+        .scr-home .avatar {
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700; color: #fff;
+        }
+        .scr-home .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 12px;
+        }
+        .scr-home .mini-stat { text-align: center; }
+        .scr-home .mini-stat .num { font-size: 14px; font-weight: 700; color: #333; }
+        .scr-home .mini-stat .lbl { font-size: 9px; color: #bbb; }
+        .scr-home .rocket-btn-area { display: flex; flex-direction: column; align-items: center; padding: 16px 0 8px; }
+        .rocket-circle {
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(255,71,87,0.35);
+            position: relative;
+        }
+        .rocket-circle .material-icons { color: #fff; font-size: 26px; }
+        .rocket-circle .launch-text { color: #fff; font-size: 10px; font-weight: 900; letter-spacing: 2px; margin-top: -2px; }
+        .rocket-circle .rocket-sub { color: rgba(255,255,255,0.6); font-size: 7px; font-weight: 600; letter-spacing: 2px; }
+        .rocket-pulse {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            animation: pulse 2s ease-out infinite;
+            z-index: -1;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        .scr-home .upload-hint { font-size: 9px; color: #ccc; margin-top: 6px; }
+        .scr-home .settings-area { padding: 8px 16px; }
+        .scr-home .settings-title { font-size: 11px; font-weight: 700; color: #333; margin-bottom: 4px; }
+        .setting-row {
+            display: flex;
+            align-items: center;
+            padding: 7px 0;
+            gap: 8px;
+        }
+        .setting-row .s-icon {
+            width: 26px; height: 26px;
+            background: #FFF0F0;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .setting-row .s-icon .material-icons { font-size: 14px; color: #FF4757; }
+        .setting-row .s-label { font-size: 11px; color: #333; flex: 1; font-weight: 500; }
+        .setting-row .s-value { font-size: 10px; color: #bbb; }
+        .setting-row .s-arrow .material-icons { font-size: 12px; color: #ccc; }
+        .scr-home .bottom-btn {
+            margin: 4px 16px 12px;
+            padding: 12px;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            border-radius: 12px;
+            color: #fff;
+            text-align: center;
+        }
+        .scr-home .bottom-btn .btn-main { font-size: 13px; font-weight: 700; }
+        .scr-home .bottom-btn .btn-sub { font-size: 9px; opacity: 0.8; }
+
+        /* Screen 3: AI Generating */
+        .scr-ai {
+            align-items: center;
+            justify-content: center;
+            padding: 30px 24px;
+            background: #fff;
+        }
+        .ai-spinner {
+            width: 80px; height: 80px;
+            background: rgba(255,71,87,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .ai-spinner .material-icons { font-size: 36px; color: #FF4757; }
+        .scr-ai .ai-status { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 12px; }
+        .scr-ai .ai-bar {
+            width: 100%; height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+        .scr-ai .ai-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF4757, #FF6B81);
+            border-radius: 2px;
+            animation: fillBar 3s ease-in-out infinite;
+        }
+        @keyframes fillBar { 0%{width:5%} 50%{width:75%} 100%{width:95%} }
+        .scr-ai .ai-pct { font-size: 12px; font-weight: 600; color: #bbb; }
+        .scr-ai .ai-steps { width: 100%; margin-top: 20px; }
+        .ai-step-row {
+            display: flex; align-items: center; gap: 8px;
+            padding: 6px 0;
+            font-size: 11px; color: #bbb;
+        }
+        .ai-step-row.done { color: #2ED573; }
+        .ai-step-row.current { color: #FF4757; font-weight: 600; }
+        .ai-step-row .material-icons { font-size: 16px; }
+
+        /* Screen 4: Review */
+        .scr-review { background: #fff; }
+        .scr-review .rev-header {
+            padding: 32px 16px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .scr-review .rev-header .material-icons { font-size: 18px; color: #333; }
+        .scr-review .rev-header span { font-size: 15px; font-weight: 700; color: #333; }
+        .scr-review .rev-body { padding: 14px 16px; flex: 1; overflow-y: auto; }
+        .scr-review .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255,71,87,0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #FF4757;
+            margin-bottom: 12px;
+        }
+        .scr-review .field-label { font-size: 11px; font-weight: 600; color: #333; margin-bottom: 4px; }
+        .scr-review .field-box {
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 11px;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .scr-review .field-box.title-box { font-weight: 600; font-size: 12px; }
+        .scr-review .tags-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+        .scr-review .tag-chip {
+            background: rgba(255,71,87,0.08);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            color: #FF4757;
+            font-weight: 600;
+        }
+        .scr-review .rev-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            font-size: 11px;
+        }
+        .scr-review .rev-info .ri-label { color: #bbb; }
+        .scr-review .rev-info .ri-value { color: #333; font-weight: 600; }
+        .scr-review .rev-bottom {
+            padding: 10px 16px 14px;
+            display: flex;
+            gap: 8px;
+        }
+        .scr-review .rev-back {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #bbb;
+            text-align: center;
+        }
+        .scr-review .rev-upload {
+            flex: 2;
+            padding: 10px;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* Screen 5: Success */
+        .scr-success {
+            align-items: center;
+            justify-content: center;
+            padding: 30px 24px;
+            background: #fff;
+        }
+        .success-circle {
+            width: 80px; height: 80px;
+            background: rgba(46,213,115,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes popIn { from { transform:scale(0); } to { transform:scale(1); } }
+        .success-circle .material-icons { font-size: 40px; color: #2ED573; }
+        .scr-success .success-title { font-size: 18px; font-weight: 700; color: #333; margin-bottom: 6px; }
+        .scr-success .success-sub { font-size: 12px; color: #bbb; margin-bottom: 16px; }
+        .scr-success .url-box {
+            width: 100%;
+            padding: 10px 14px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            margin-bottom: 14px;
+        }
+        .scr-success .url-box .material-icons { font-size: 14px; color: #FF4757; }
+        .scr-success .url-box .url-text { color: #FF4757; font-weight: 600; flex: 1; }
+        .scr-success .result-card {
+            width: 100%;
+            background: #FFFAFA;
+            border-radius: 12px;
+            padding: 14px;
+            text-align: left;
+            margin-bottom: 16px;
+        }
+        .scr-success .result-card .rc-title { font-size: 12px; font-weight: 700; color: #333; margin-bottom: 4px; }
+        .scr-success .result-card .rc-meta { font-size: 10px; color: #bbb; }
+        .scr-success .done-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Step indicators */
+        .demo-steps {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 28px;
+        }
+        .demo-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s;
+        }
+        .demo-dot.active {
+            background: #FF4757;
+            width: 24px;
+            border-radius: 4px;
+        }
+        .demo-label {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #606060;
+            font-weight: 500;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { padding: 0 12px; }
@@ -393,6 +804,7 @@
             .pricing { grid-template-columns: 1fr; }
             .hero-stats { gap: 24px; }
             .cta-buttons { flex-direction: column; align-items: center; }
+            .phone { width: 260px; height: 520px; }
         }
     </style>
 </head>
@@ -444,6 +856,164 @@
                 <div class="stat-label">To Publish</div>
             </div>
         </div>
+    </section>
+
+    <!-- APP DEMO -->
+    <section class="demo-section" id="demo">
+        <h2 class="section-title">See It In Action</h2>
+        <p class="section-sub">From video selection to YouTube upload — all in seconds.</p>
+        <div class="phone-wrapper">
+            <div class="phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+
+                    <!-- Screen 1: Login -->
+                    <div class="app-screen scr-login active" id="scr1">
+                        <div class="app-logo"><span class="material-icons">play_arrow</span></div>
+                        <div class="app-title">TubeRocket</div>
+                        <div class="app-tagline">AI Video Uploader for YouTube</div>
+                        <div class="g-btn">
+                            <img src="https://developers.google.com/identity/images/g-logo.png" alt="G" onerror="this.style.display='none'">
+                            Sign in with Google
+                        </div>
+                        <div class="divider-row"><hr><span>or</span><hr></div>
+                        <div class="yt-btn">
+                            <span class="material-icons" style="font-size:16px">play_arrow</span>
+                            Connect YouTube
+                        </div>
+                    </div>
+
+                    <!-- Screen 2: Home -->
+                    <div class="app-screen scr-home" id="scr2">
+                        <div class="home-header">
+                            <span class="brand">TubeRocket</span>
+                            <div class="avatar">U</div>
+                        </div>
+                        <div class="stats-bar">
+                            <div class="mini-stat"><div class="num">24</div><div class="lbl">Videos</div></div>
+                            <div class="mini-stat"><div class="num">12.4K</div><div class="lbl">Views</div></div>
+                            <div class="mini-stat"><div class="num">847</div><div class="lbl">Subs</div></div>
+                        </div>
+                        <div class="rocket-btn-area">
+                            <div class="rocket-circle">
+                                <div class="rocket-pulse"></div>
+                                <span class="material-icons">rocket_launch</span>
+                                <span class="launch-text">LAUNCH</span>
+                                <span class="rocket-sub">ROCKET</span>
+                            </div>
+                            <div class="upload-hint">Tap to select a video</div>
+                        </div>
+                        <div class="settings-area">
+                            <div class="settings-title">Publishing Settings</div>
+                            <div class="setting-row">
+                                <div class="s-icon"><span class="material-icons">language</span></div>
+                                <span class="s-label">Language</span>
+                                <span class="s-value">English</span>
+                                <span class="s-arrow"><span class="material-icons">chevron_right</span></span>
+                            </div>
+                            <div class="setting-row">
+                                <div class="s-icon"><span class="material-icons">category</span></div>
+                                <span class="s-label">Category</span>
+                                <span class="s-value">Entertainment</span>
+                                <span class="s-arrow"><span class="material-icons">chevron_right</span></span>
+                            </div>
+                            <div class="setting-row">
+                                <div class="s-icon"><span class="material-icons">shield</span></div>
+                                <span class="s-label">Privacy</span>
+                                <span class="s-value">Public</span>
+                                <span class="s-arrow"><span class="material-icons">chevron_right</span></span>
+                            </div>
+                            <div class="setting-row">
+                                <div class="s-icon"><span class="material-icons">image</span></div>
+                                <span class="s-label">Thumbnail</span>
+                                <span class="s-value">Auto</span>
+                                <span class="s-arrow"><span class="material-icons">chevron_right</span></span>
+                            </div>
+                        </div>
+                        <div class="bottom-btn">
+                            <div class="btn-main">&#128640; Generate & Publish</div>
+                            <div class="btn-sub">AI generates title, description, tags & thumbnail</div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 3: AI Generating -->
+                    <div class="app-screen scr-ai" id="scr3">
+                        <div class="ai-spinner">
+                            <span class="material-icons">cloud_upload</span>
+                        </div>
+                        <div class="ai-status">AI is working...</div>
+                        <div class="ai-bar"><div class="ai-bar-fill"></div></div>
+                        <div class="ai-pct">Processing...</div>
+                        <div class="ai-steps">
+                            <div class="ai-step-row done"><span class="material-icons">check_circle</span> Transcribing audio</div>
+                            <div class="ai-step-row done"><span class="material-icons">check_circle</span> Analyzing content</div>
+                            <div class="ai-step-row current"><span class="material-icons">pending</span> Generating title & tags</div>
+                            <div class="ai-step-row"><span class="material-icons">radio_button_unchecked</span> Creating description</div>
+                            <div class="ai-step-row"><span class="material-icons">radio_button_unchecked</span> Preparing thumbnail</div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 4: Review -->
+                    <div class="app-screen scr-review" id="scr4">
+                        <div class="rev-header">
+                            <span class="material-icons">arrow_back</span>
+                            <span>Review & Edit</span>
+                        </div>
+                        <div class="rev-body">
+                            <div class="ai-badge"><span class="material-icons" style="font-size:12px">rocket_launch</span> AI Generated</div>
+                            <div class="field-label">Title</div>
+                            <div class="field-box title-box">10 Hidden iPhone Features You NEED to Know in 2026!</div>
+                            <div class="field-label">Description</div>
+                            <div class="field-box" style="font-size:10px;">Discover the top 10 secret iPhone features that Apple doesn't tell you about. From hidden gestures to...</div>
+                            <div class="field-label">Tags</div>
+                            <div class="tags-wrap">
+                                <span class="tag-chip">#iPhone</span>
+                                <span class="tag-chip">#Tips</span>
+                                <span class="tag-chip">#Tech</span>
+                                <span class="tag-chip">#2026</span>
+                                <span class="tag-chip">#Hidden</span>
+                                <span class="tag-chip">#Apple</span>
+                            </div>
+                            <div class="rev-info"><span class="ri-label">Category</span><span class="ri-value">Science & Technology</span></div>
+                            <div class="rev-info"><span class="ri-label">Language</span><span class="ri-value">English</span></div>
+                            <div class="rev-info"><span class="ri-label">Privacy</span><span class="ri-value">Public</span></div>
+                        </div>
+                        <div class="rev-bottom">
+                            <div class="rev-back">Back</div>
+                            <div class="rev-upload"><span class="material-icons" style="font-size:14px">cloud_upload</span> Upload to YouTube</div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 5: Success -->
+                    <div class="app-screen scr-success" id="scr5">
+                        <div class="success-circle">
+                            <span class="material-icons">check_circle</span>
+                        </div>
+                        <div class="success-title">Upload Complete!</div>
+                        <div class="success-sub">Your video is now live on YouTube</div>
+                        <div class="url-box">
+                            <span class="material-icons">link</span>
+                            <span class="url-text">youtu.be/abc123xyz</span>
+                            <span class="material-icons" style="font-size:14px;color:#ccc">content_copy</span>
+                        </div>
+                        <div class="result-card">
+                            <div class="rc-title">10 Hidden iPhone Features You NEED to Know in 2026!</div>
+                            <div class="rc-meta">48 tags · 5 hashtags</div>
+                        </div>
+                        <div class="done-btn">&#128640; Upload Another</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="demo-steps">
+            <div class="demo-dot active" id="dot0"></div>
+            <div class="demo-dot" id="dot1"></div>
+            <div class="demo-dot" id="dot2"></div>
+            <div class="demo-dot" id="dot3"></div>
+            <div class="demo-dot" id="dot4"></div>
+        </div>
+        <div class="demo-label" id="demoLabel">Sign in with Google</div>
     </section>
 
     <!-- HOW IT WORKS -->
@@ -633,5 +1203,57 @@
         <p>&copy; 2026 DreamCodeStudio. All rights reserved.</p>
     </footer>
 
+    <script>
+    // Phone demo auto-play
+    (function() {
+        const screens = ['scr1','scr2','scr3','scr4','scr5'];
+        const labels = [
+            'Sign in with Google',
+            'Select video & settings',
+            'AI generates everything',
+            'Review & edit metadata',
+            'Published on YouTube!'
+        ];
+        const timings = [2500, 3500, 3500, 3500, 3000];
+        let current = 0;
+        let timeout;
+
+        function showScreen(index) {
+            screens.forEach((id, i) => {
+                const el = document.getElementById(id);
+                const dot = document.getElementById('dot' + i);
+                if (i === index) {
+                    el.classList.remove('exiting');
+                    el.classList.add('active');
+                    dot.classList.add('active');
+                } else if (el.classList.contains('active')) {
+                    el.classList.remove('active');
+                    el.classList.add('exiting');
+                    dot.classList.remove('active');
+                    setTimeout(() => el.classList.remove('exiting'), 400);
+                } else {
+                    el.classList.remove('active', 'exiting');
+                    dot.classList.remove('active');
+                }
+            });
+            document.getElementById('demoLabel').textContent = labels[index];
+        }
+
+        function next() {
+            current = (current + 1) % screens.length;
+            showScreen(current);
+            timeout = setTimeout(next, timings[current]);
+        }
+
+        timeout = setTimeout(next, timings[0]);
+
+        // Pause on hover
+        const phone = document.querySelector('.phone');
+        phone.addEventListener('mouseenter', () => clearTimeout(timeout));
+        phone.addEventListener('mouseleave', () => {
+            timeout = setTimeout(next, timings[current]);
+        });
+    })();
+    </script>
 </body>
 </html>
