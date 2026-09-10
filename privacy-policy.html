@@ -34,7 +34,7 @@
         <a href="/" class="back-link">&larr; Back to TubeRocket</a>
         <div class="header">
             <h1>TubeRocket</h1>
-            <p>Privacy Policy &middot; Last updated: September 7, 2026</p>
+            <p>Privacy Policy &middot; Last updated: September 10, 2026</p>
         </div>
 
         <div class="card">
@@ -81,8 +81,10 @@
             <ul>
                 <li><strong>Google Sign-In & YouTube Data API:</strong> For authentication and video uploading. Subject to <a href="https://policies.google.com/privacy">Google's Privacy Policy</a></li>
                 <li><strong>Groq AI API:</strong> For content generation and audio transcription. Audio data is sent securely and not stored permanently</li>
+                <li><strong>Google Gemini API:</strong> For generating titles, descriptions, tags and SEO suggestions. Only the text/audio needed for the request is sent</li>
                 <li><strong>AudD API:</strong> For optional copyright music detection. Audio fingerprints may be sent for analysis</li>
             </ul>
+            <p>No Google user data (account information or YouTube data) is shared with these AI services. They only receive the audio or text needed to generate metadata for the video you choose.</p>
         </div>
 
         <div class="card" style="border: 2px solid #d32f2f; background: #fff5f5;">
@@ -93,6 +95,9 @@
                 <li>Only requests access to the data necessary for the app's features (uploading videos, reading channel info, setting video metadata)</li>
                 <li>Does <strong>not</strong> transfer your YouTube data to third parties, except as necessary to provide the service</li>
                 <li>Does <strong>not</strong> use your YouTube data for advertising purposes</li>
+                <li>Does <strong>not</strong> sell Google user data, or use it for credit-worthiness or lending purposes</li>
+                <li>Does <strong>not</strong> use Google user data to develop, improve or train generalized or non-personalized AI/ML models</li>
+                <li>Does <strong>not</strong> allow any human to read your Google user data, unless you give explicit consent, it is required for security purposes, or it is required by law</li>
                 <li>Does <strong>not</strong> store your YouTube data on external servers — all data remains on your device</li>
                 <li>Allows you to revoke access at any time via <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions</a></li>
             </ul>
@@ -115,12 +120,36 @@
         </div>
 
         <div class="card">
-            <h2>7. Data Sharing</h2>
+            <h2>7. How We Protect Sensitive Data</h2>
+            <p>We treat your Google account data and YouTube data as sensitive and protect it with the following mechanisms:</p>
+            <ul>
+                <li><strong>Encryption in transit:</strong> All communication between the App and Google APIs, and between the App and AI services, uses HTTPS with TLS 1.2 or higher. No data is ever sent over unencrypted connections.</li>
+                <li><strong>Secure token handling:</strong> OAuth access tokens are obtained and refreshed exclusively through the official Google Sign-In SDK and kept in the operating system's protected app storage (Android Keystore-backed storage / iOS Keychain). Tokens are never written to logs, never sent to any server other than Google, and are cleared when you sign out.</li>
+                <li><strong>No server-side storage:</strong> We do not operate a backend that stores your Google data. Your account information, YouTube channel data and videos only travel between your device and Google's servers.</li>
+                <li><strong>Data minimization:</strong> We request only the YouTube scopes needed to upload videos and manage their metadata, and we read only the data required for the feature you are using.</li>
+                <li><strong>Access control:</strong> No person, including the developer, has access to your Google account data, OAuth tokens or YouTube content. Data is processed automatically only on your device.</li>
+                <li><strong>Sandboxed local storage:</strong> Local preferences are stored inside the App's private sandbox, inaccessible to other apps, and are permanently deleted when you sign out or uninstall the App.</li>
+                <li><strong>Secure development:</strong> Credentials are never written to logs, and the App is built with platform security defaults (no cleartext network traffic allowed).</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>8. Data Retention & Deletion</h2>
+            <ul>
+                <li>Google user data is held only on your device for as long as you are signed in.</li>
+                <li>Signing out removes your OAuth tokens and account information from the App.</li>
+                <li>Uninstalling the App permanently deletes all locally stored data.</li>
+                <li>You can revoke TubeRocket's access at any time at <a href="https://myaccount.google.com/permissions">Google Account Permissions</a>, or request deletion via our <a href="delete-data.html">data deletion page</a>.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>9. Data Sharing</h2>
             <p>We do <strong>not</strong> sell, rent, or share your personal information with third parties. Data is only shared with the third-party services listed above, strictly for the app's core functionality.</p>
         </div>
 
         <div class="card">
-            <h2>8. Your Rights</h2>
+            <h2>10. Your Rights</h2>
             <ul>
                 <li><strong>Revoke Access:</strong> You can disconnect TubeRocket from your Google account at any time via <a href="https://myaccount.google.com/permissions">Google Account Permissions</a></li>
                 <li><strong>Delete Data:</strong> Uninstalling the app removes all locally stored data</li>
@@ -129,7 +158,7 @@
         </div>
 
         <div class="card">
-            <h2>9. Analytics</h2>
+            <h2>11. Analytics</h2>
             <p>We use <strong>Firebase Analytics</strong> (by Google) to understand how users interact with the app. This helps us improve the user experience. Firebase Analytics may collect:</p>
             <ul>
                 <li>App usage data (screens viewed, features used)</li>
@@ -142,17 +171,17 @@
         </div>
 
         <div class="card">
-            <h2>10. Children's Privacy</h2>
+            <h2>12. Children's Privacy</h2>
             <p>TubeRocket is not intended for children under 13. We do not knowingly collect personal information from children under 13 years of age.</p>
         </div>
 
         <div class="card">
-            <h2>11. Changes to This Policy</h2>
+            <h2>13. Changes to This Policy</h2>
             <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated "Last updated" date.</p>
         </div>
 
         <div class="card">
-            <h2>12. Contact Us</h2>
+            <h2>14. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy, please contact us at:</p>
             <p><strong>Email:</strong> tuberocket.app@gmail.com</p>
         </div>
